@@ -108,14 +108,28 @@ throws ANTLRException
   {
     bits = doRange(d,field);
   }
-  | ("H" "(")=> "H" "(" s=token "-" e=token ")" ( "/" d=token )?
+  | ("H" "(" token "-")=> "H" "(" s=token "-" e=token ")" ( "," hash[field] )* ( "/" d=token )?
   {
     bits = doHash(s,e,d,field);
+  }
+  | ("H" "(")=> "H" "(" token ( "," hash[field] )+ ")" ( "/" d=token )?
+  {
+    //bits = doHash(s,e,d,field);
   }
   | "H" ( "/" d=token )?
   {
     bits = doHash(d,field);
   }
+  ;
+
+hash [int field]
+returns [long bits=0]
+throws ANTLRException
+{
+  int s=0,e=0,t;
+}
+  : (token "-")=> s=token "-" e=token
+  | t=token
   ;
 
 token

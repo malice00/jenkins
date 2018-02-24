@@ -314,4 +314,10 @@ public class CronTabTest {
         assertEquals("[35, 56]", times.toString());
     }
 
+    public void testH() throws Exception {
+      CronTabList tabs = CronTabList.create("0 1/2 * * *", Hash.from("Project 1"));
+      for (int i = 0; i < 10; i++) {
+        System.out.println(i + ": "+ tabs.check(new GregorianCalendar(2017, 0, 1, i, 0, 0)));
+      }
+    }
 }

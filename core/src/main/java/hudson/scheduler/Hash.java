@@ -92,4 +92,20 @@ public abstract class Hash {
             return 0;
         }
     };
+
+    public static void main(String[] args) {
+      // s+hash.next(e+1-s)
+      for (int i = 0; i < 10; i++) {
+        Hash h = Hash.from("test" + i*10);
+        int[] x = new int[2];
+        x[0] = 0 + h.next(6+1-0);
+        System.out.println("1: " + x[0]);
+        x[1] = 20 + h.next(23+1-20);
+        System.out.println("2: " + x[1]);
+        int y = h.next(2);
+        System.out.println("3: " + y);
+        System.out.println("4: " + x[y]);
+        System.out.println();
+      }
+    }
 }
